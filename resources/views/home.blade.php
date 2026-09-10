@@ -15,9 +15,18 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                    
+                    <div class="mt-4">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">
+                                Cerrar Sesión
+                            </button>
+                        </form>
+                    </div>
+                </div> <!-- Cierre de card-body -->
+            </div> <!-- Cierre de card -->
+        </div> <!-- Cierre de col-md-8 -->
+    </div> <!-- Cierre de row -->
+</div> <!-- Cierre de container -->
+@endsection <!-- Cierre de la sección content -->
