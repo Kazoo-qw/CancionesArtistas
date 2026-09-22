@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('songs_artists', function (Blueprint $table) {
@@ -17,12 +14,12 @@ return new class extends Migration
             $table->foreignId('song_id')->constrained()->onDelete('cascade');
             $table->boolean('status')->default(true);
             $table->timestamps();
+
+            // Evita que el mismo artista quede asociado dos veces a la misma canción
+            $table->unique(['artist_id', 'song_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('songs_artists');

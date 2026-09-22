@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('songs', function (Blueprint $table) {
@@ -21,12 +18,11 @@ return new class extends Migration
             $table->boolean('status')->default(true); // Estado de la canción
             $table->foreignId('registered_by')->nullable()->constrained('users')->onDelete('cascade'); // Usuario que la registró
             $table->timestamps();
+
+            $table->index('title'); // Acelera búsquedas y filtros por título de canción
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('songs');

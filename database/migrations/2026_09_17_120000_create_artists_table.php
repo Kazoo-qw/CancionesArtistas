@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('artists', function (Blueprint $table) {
@@ -21,12 +18,11 @@ return new class extends Migration
             $table->boolean('status')->default(true); // Estado del artista (true = activo, false = inactivo)
             $table->foreignId('registered_by')->nullable()->constrained('users')->onDelete('cascade'); // Usuario que lo registró
             $table->timestamps();
+
+            $table->index('name'); // Acelera búsquedas y filtros por nombre de artista
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('artists');
