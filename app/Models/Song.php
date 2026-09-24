@@ -35,7 +35,7 @@ class Song extends Model
     {
         return $this->belongsToMany(Artist::class, 'songs_artists', 'song_id', 'artist_id')
             ->using(SongArtist::class)
-            ->withPivot('id', 'status')
+            ->withPivot('id', 'producer', 'status')
             ->withTimestamps();
     }
 

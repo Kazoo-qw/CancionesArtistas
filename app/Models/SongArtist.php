@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-#[Fillable(['artist_id', 'song_id', 'status'])]
+#[Fillable(['artist_id', 'song_id', 'producer', 'status'])]
 class SongArtist extends Pivot
 {
     use HasFactory;
