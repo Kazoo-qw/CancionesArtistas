@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('release_date')->nullable();
             $table->string('genre')->nullable();
             $table->boolean('status')->default(true); // Estado de la canción
-            $table->foreignId('registered_by')->nullable()->constrained('users')->onDelete('cascade'); // Usuario que la registró
+            $table->foreignId('registered_by')->nullable(); // Usuario que la registró
             $table->timestamps();
 
             $table->index('title'); // Acelera búsquedas y filtros por título de canción

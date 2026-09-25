@@ -14,17 +14,10 @@ class SongArtist extends Pivot
 
     protected $table = 'songs_artists';
 
-    // A diferencia del comportamiento por defecto de Pivot (sin PK propia),
     // songs_artists tiene su propia columna `id` autoincremental.
     public $incrementing = true;
     protected $primaryKey = 'id';
 
-    protected function casts(): array
-    {
-        return [
-            'status' => 'boolean',
-        ];
-    }
 
     public function artist(): BelongsTo
     {

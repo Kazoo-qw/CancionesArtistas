@@ -17,25 +17,6 @@ class Artist extends Model
     protected $table = 'artists';
     protected $primaryKey = 'id';
 
-    protected function casts(): array
-    {
-        return [
-            'status' => 'boolean',
-        ];
-    }
-
-    public function registeredBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'registered_by');
-    }
-
-    public function songs(): BelongsToMany
-    {
-        return $this->belongsToMany(Song::class, 'songs_artists', 'artist_id', 'song_id')
-            ->using(SongArtist::class)
-            ->withPivot('id', 'producer', 'status')
-            ->withTimestamps();
-    }
 
     public function songArtists(): HasMany
     {

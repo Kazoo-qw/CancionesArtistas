@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('image_path')->nullable();
             $table->boolean('status')->default(true); // Estado del artista (true = activo, false = inactivo)
-            $table->foreignId('registered_by')->nullable()->constrained('users')->onDelete('cascade'); // Usuario que lo registró
+            $table->foreignId('registered_by')->nullable(); // Usuario que lo registró
             $table->timestamps();
 
             $table->index('name'); // Acelera búsquedas y filtros por nombre de artista

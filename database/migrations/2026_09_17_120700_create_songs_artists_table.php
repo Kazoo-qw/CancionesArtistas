@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('songs_artists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id')->constrained()->onDelete('cascade');
-            $table->foreignId('song_id')->constrained()->onDelete('cascade');
+            $table->foreignId('artist_id');
+            $table->foreignId('song_id');
             $table->string('producer')->nullable();
             $table->timestamps();
 
