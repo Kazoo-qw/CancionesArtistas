@@ -18,7 +18,9 @@ class SongFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Única columna NOT NULL sin valor por defecto: album, duration_in_seconds,
+            // release_date, genre, status y registered_by son anulables o ya traen default.
+            'title' => $this->faker->unique()->words(3, true),
         ];
     }
 }
