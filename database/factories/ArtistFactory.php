@@ -18,7 +18,9 @@ class ArtistFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Única columna NOT NULL sin valor por defecto: genre, bio, country,
+            // image_path, status y registered_by son anulables o ya traen default.
+            'name' => $this->faker->unique()->name(),
         ];
     }
 }
