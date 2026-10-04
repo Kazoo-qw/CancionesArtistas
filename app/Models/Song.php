@@ -18,6 +18,11 @@ class Song extends Model
     protected $primaryKey = 'id';
 
     protected function casts(): array
+    {
+        return [
+            'release_date' => 'date:Y-m-d',
+        ];
+    }
 
     public function songArtists(): HasMany
     {
