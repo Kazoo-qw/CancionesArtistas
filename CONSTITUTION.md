@@ -88,6 +88,8 @@ Los comandos destructivos de base de datos **nunca** se ejecutan contra una base
 4. Validar datos de entrada antes de tocar el modelo.
 5. No dejar código muerto, `dd()`, `dump()` ni `var_dump()` en lo que se entrega 🔧.
 6. Tras cambios de configuración, rutas, vistas o `.env`, limpiar caché (`php artisan optimize:clear`) antes de concluir que algo "no funciona".
+7. **Assets estáticos de plantillas externas** (AdminLTE): viven en `public/backend/` tal cual se copiaron, con `dist/` (`css`, `img`, `js`) y `plugins/` como hermanos, y **no pasan por Vite ni por npm**. Las vistas los referencian **solo** con `asset('backend/…')`, nunca con rutas hardcodeadas. **Decisión de arquitectura (2026-10-15):** se puso `plugins/` fuera de `dist/` para que calce con las rutas que trae el layout; si algún día se usa la estructura original de AdminLTE (`dist/plugins`), hay que cambiar **las vistas**, no mover otra vez la carpeta.
+8. Verificar que la ruta escrita en `asset()` exista de verdad bajo `public/` antes de darla por buena. Un `asset()` mal armado **no lanza error**: la hoja de estilos o el script simplemente no se carga (404 silencioso en la consola del navegador). *(El 2026-10-15 el layout traía 4 rutas `asset('backend/plugins/…')` apuntando a una carpeta que no existía: login sin FontAwesome, sin icheck, sin jQuery y sin Bootstrap.)*
 
 ## Artículo 9. Cómo debe comportarse el agente
 

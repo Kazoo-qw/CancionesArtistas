@@ -17,10 +17,11 @@ Si una petición choca con la constitución, avisa y pide confirmación antes de
 | Ubicación | `C:\laragon\www\CancionesArtistas` (Laragon; los apuntes hablan de XAMPP/`C:\xampp\htdocs`) |
 | Dominio | **Canciones y artistas**: modelos `Song`, `Artist`, `SongArtist`; tablas `songs`, `artists`, `songs_artists` (pivot con `producer`; **sin** restricción de unicidad desde el 2026-10-02). El caso de estudio de ventas está solo en el **Anexo de `MEMORY.md`**: **no existe en este repo** |
 | Modelos | `Artist`, `Song`, `SongArtist` (`extends Pivot`, con `$incrementing = true`) |
-| Auth | `laravel/ui` con Bootstrap: `/`, `Auth::routes()`, `/home` → `HomeController`; vistas en `resources/views/auth/` y `layouts/app.blade.php` |
+| Auth | `laravel/ui` con Bootstrap: `/`, `Auth::routes()`, `/home` → `HomeController`; vistas en `resources/views/auth/` y `layouts/app.blade.php`. Layout AdminLTE aparte: `layouts/app_authentication.blade.php` (usa `@yield('title')`, `@yield('content')`, `@stack('css'/'scripts')`) |
+| Frontend | **AdminLTE 3 copiado a mano en `public/backend/`** (desde 2026-10-15): `dist/` (`css`, `img`, `js`) y **`plugins/` como hermano de `dist`**, no dentro — así calzan las rutas `asset('backend/plugins/…')` del layout. **2054 archivos / 81,7 MB** (~70 MB en plugins). **No** pasa por Vite ni por npm |
 | Pruebas | Pest sobre **sqlite `:memory:`** (`phpunit.xml`): no tocan MySQL. `php artisan test` → **2 passing** |
 | Datos de ejemplo | `php artisan db:seed` crea **10 usuarios + 20 `Song` + 20 `Artist` + 200 `SongArtist`** con **`SongArtist::factory(200)->create();`**, que corre porque la tabla **ya no tiene `UNIQUE`**. Los pares **sí se repiten** (~114 de 400 filas): es el comportamiento pedido. Verificado 2026-10-02: 21/20/20/200 |
-| No existe | `routes/api.php`, `public/backend` (AdminLTE), `.github/` ni CI, `pint.json` |
+| No existe | `routes/api.php`, `.github/` ni CI, `pint.json` |
 
 ## Entorno (Windows + Laragon)
 
@@ -46,6 +47,8 @@ C:\laragon\bin\composer\composer.bat <comando>
 - **Comandos que sí funcionan sin MySQL:** `php artisan test` (2 pruebas en verde), `php vendor\bin\pest tests\Feature\ExampleTest.php` (un archivo), `php artisan --version`, `php -l <archivo>`.
 - `composer test` (config:clear + `artisan test`) y `composer run dev` (→ `php artisan dev`) son válidos si `php` está en el PATH.
 - Frontend: `npm run dev` / `npm run build` (npm 11). Vite solo compila `resources/sass/app.scss` y `resources/js/app.js`.
+- **AdminLTE no pasa por Vite ni por npm**: sus archivos son estáticos en `public/backend/`. `layouts/app_authentication.blade.php` mezcla las dos vías — `asset()` para AdminLTE y `@vite(...)` para lo de laravel/ui. Si `@vite` truena con *manifest no encontrado*, falta `npm run dev` (o `npm run build`).
+- Si una ruta de `asset()` no coincide con lo que hay en `public/`, **no hay error en pantalla**: la hoja de estilos o el script simplemente no carga (404 en la consola). Comprobar con `Test-Path public\<ruta>`.
 - Tras cambios de configuración, rutas, vistas o `.env`: `php artisan optimize:clear` antes de concluir que "algo no funciona".
 
 ## Advertencias de este repositorio (revisar antes de tocar Git)
