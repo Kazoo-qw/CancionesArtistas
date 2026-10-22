@@ -1,83 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', config('app.name', 'Laravel'))</title>
+  <title>@yield('title', 'CancionesArtistas')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/jqvmap/jqvmap.min.css') }}">
-  <!-- Theme style -->
+  <!-- Theme style (AdminLTE 3) -->
   <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
-
-  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
   @stack('css')
 
 </head>
 
+<!-- layout-fixed deja fijos el sidebar, el navbar y el footer -->
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        @include('layouts.partials.topbar')
-        @include('layouts.partials.sidebar')
-        @yield('content')
-        @include('layouts.partials.footer')
+<div class="wrapper">
+
+    @include('layouts.partials.topbar')
+    @include('layouts.partials.sidebar')
+
+    <!-- El marco del contenido lo pone el layout; cada vista solo llena 'content' -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">@yield('title', 'Panel de control')</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
+                            @yield('breadcrumb')
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                @include('partials.mensajes')
+                @yield('content')
+            </div>
+        </section>
     </div>
+
+    @include('layouts.partials.footer')
+</div>
 </body>
 
 <!-- jQuery -->
-<script src="{{ asset('backend/plugins/jquery/jquery.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('backend/plugins/jquery-ui/jquery-ui.js') }}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
+<script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('backend/plugins/chart.js/Chart.js') }}"></script>
-<!-- Sparkline -->
-<script src="{{ asset('backend/plugins/sparklines/sparkline.js') }}"></script>
-<!-- JQVMap -->
-<script src="{{ asset('backend/plugins/jqvmap/jquery.vmap.js') }}"></script>
-<script src="{{ asset('backend/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{ asset('backend/plugins/jquery-knob/jquery.knob.js') }}"></script>
-<!-- daterangepicker -->
-<script src="{{ asset('backend/plugins/moment/moment.js') }}"></script>
-<script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('backend/plugins/summernote/summernote-bs4.js') }}"></script>
-<!-- overlayScrollbars -->
-<script src="{{ asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('backend/dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('backend/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('backend/dist/js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE app (pushmenu, treeview, etc.) -->
+<script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
 
 @stack('scripts')
 
