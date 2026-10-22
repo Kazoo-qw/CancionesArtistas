@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
+use App\Models\Song;
+use App\Models\SongArtist;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Conteos reales del panel de control.
+        $totalCanciones = Song::count();
+        $totalArtistas = Artist::count();
+        $totalAsociaciones = SongArtist::count();
+
+        return view('home', compact('totalCanciones', 'totalArtistas', 'totalAsociaciones'));
     }
 }

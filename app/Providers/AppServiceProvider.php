@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Las páginas usan AdminLTE 3 (Bootstrap 4), así que la paginación
+        // debe generar las clases .page-item / .page-link de Bootstrap.
+        Paginator::useBootstrapFour();
     }
 }

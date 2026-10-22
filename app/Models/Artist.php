@@ -22,4 +22,12 @@ class Artist extends Model
     {
         return $this->hasMany(SongArtist::class, 'artist_id');
     }
+
+    // Relación N:M con canciones a través de la tabla pivote songs_artists.
+    public function songs(): BelongsToMany
+    {
+        return $this->belongsToMany(Song::class, 'songs_artists')
+            ->withPivot('producer')
+            ->withTimestamps();
+    }
 }
