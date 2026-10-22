@@ -17,6 +17,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
 
+  <link rel="stylesheet" href="{{asset('favicon.ico')}}">
+
   @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
   @stack('css')
