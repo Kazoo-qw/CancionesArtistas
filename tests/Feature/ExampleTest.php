@@ -1,8 +1,10 @@
 <?php
 
-test('la portada redirige al panel y el panel pide iniciar sesión', function () {
-    $this->get('/')->assertRedirect(route('home'));
+test('la portada muestra la bienvenida y el panel pide iniciar sesión', function () {
+    // "/" es solo para invitados: enseña welcome.
+    $this->get('/')->assertOk();
 
+    // El panel exige sesión iniciada.
     $this->get('/home')->assertRedirect(route('login'));
 });
 

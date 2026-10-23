@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 // La portada manda al panel: todo el sitio requiere sesión iniciada.
 Route::get('/', function () {
-    return redirect()->route('home');
-});
+    return view('welcome');
+})->middleware('guest')->name('welcome');
 
 Auth::routes();
 

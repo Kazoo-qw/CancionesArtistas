@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
         Song::factory()->count(20)->create();
         Artist::factory()->count(20)->create();
 
-        // Los pares salen con repetición, a propósito: es el fragmento tal cual
-        // que pidió el profesor y, para que funcione, songs_artists no tiene UNIQUE.
         SongArtist::factory(200)->create();
     }
 }
