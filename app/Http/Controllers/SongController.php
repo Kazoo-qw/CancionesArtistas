@@ -42,7 +42,7 @@ class SongController extends Controller
 
         return redirect()
             ->route('songs.index')
-            ->with('exito', 'La canción se registró correctamente.');
+            ->with('exito', 'Song created successfully.');
     }
 
     // GET /songs/{song} — detalle de la canción.
@@ -77,7 +77,7 @@ class SongController extends Controller
 
         return redirect()
             ->route('songs.index')
-            ->with('exito', 'La canción se actualizó correctamente.');
+            ->with('exito', 'Song updated successfully.');
     }
 
     // DELETE /songs/{song} — borra la canción.
@@ -89,7 +89,7 @@ class SongController extends Controller
 
         return redirect()
             ->route('songs.index')
-            ->with('exito', 'La canción se eliminó correctamente.');
+            ->with('exito', 'Song deleted successfully.');
     }
 
     // Reglas que comparten store() y update().

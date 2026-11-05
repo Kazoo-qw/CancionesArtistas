@@ -29,7 +29,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-               title="Cerrar sesión" role="button">
+               title="Log out" role="button">
                 <i class="fas fa-power-off" style="font-size:24px; color:red"></i>
             </a>
             <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none">

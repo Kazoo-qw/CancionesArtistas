@@ -1,6 +1,6 @@
 @extends('layouts.app_authentication')
 
-@section('title','Restablecer Contraseña')
+@section('title','Reset Password')
 
 @section('content')
 <div class="login-box">
@@ -22,7 +22,7 @@
                     @enderror
                 </div>
                 <div class="form-group has-feedback">
-                    <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required autocomplete="current-password">
+                    <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                     @enderror
                 </div>
                 <div class="form-group has-feedback">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required autocomplete="new-password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">

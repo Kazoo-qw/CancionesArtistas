@@ -1,6 +1,6 @@
 @extends('layouts.app_authentication')
 
-@section('title','Restablecer Contraseña')
+@section('title','Reset Password')
 
 @section('content')
 <div class="login-box">
@@ -17,7 +17,7 @@
             <form action="{{ route('password.email') }}" method="POST">
                 @csrf
                 <div class="form-group has-feedback">
-                    <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Correo" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @error('email')
                         <span class="invalid-feedback" role="alert">

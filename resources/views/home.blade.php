@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Panel de control')
+@section('title', 'Dashboard')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active">Panel de control</li>
+    <li class="breadcrumb-item active">Dashboard</li>
 @endsection
 
 @section('content')
@@ -12,13 +12,13 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>{{ $totalCanciones }}</h3>
-                    <p>Canciones registradas</p>
+                    <p>Songs registered</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-music"></i>
                 </div>
                 <a href="{{ route('songs.index') }}" class="small-box-footer">
-                    Ver canciones <i class="fas fa-arrow-circle-right"></i>
+                    View songs <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -27,13 +27,13 @@
             <div class="small-box bg-success">
                 <div class="inner">
                     <h3>{{ $totalArtistas }}</h3>
-                    <p>Artistas registrados</p>
+                    <p>Artists registered</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-microphone-alt"></i>
                 </div>
                 <a href="{{ route('artists.index') }}" class="small-box-footer">
-                    Ver artistas <i class="fas fa-arrow-circle-right"></i>
+                    View artists <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -42,13 +42,13 @@
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>{{ $totalAsociaciones }}</h3>
-                    <p>Asociaciones canción–artista</p>
+                    <p>Song–artist links</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-link"></i>
                 </div>
                 <a href="{{ route('songs.index') }}" class="small-box-footer">
-                    Ver en las canciones <i class="fas fa-arrow-circle-right"></i>
+                    View in songs <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>

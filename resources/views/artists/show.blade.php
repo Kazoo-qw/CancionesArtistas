@@ -3,7 +3,7 @@
 @section('title', $artist->name)
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('artists.index') }}">Artistas</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('artists.index') }}">Artists</a></li>
     <li class="breadcrumb-item active">{{ $artist->name }}</li>
 @endsection
 
@@ -13,7 +13,7 @@
             <h3 class="card-title">{{ $artist->name }}</h3>
             <div class="card-tools">
                 <a href="{{ route('artists.edit', $artist) }}" class="btn btn-warning btn-sm">
-                    <i class="fas fa-edit mr-1"></i> Editar
+                    <i class="fas fa-edit mr-1"></i> Edit
                 </a>
             </div>
         </div>
@@ -22,37 +22,37 @@
             <table class="table table-bordered mb-0">
                 <tbody>
                     <tr>
-                        <th style="width: 220px">Nombre</th>
+                        <th style="width: 220px">Name</th>
                         <td>{{ $artist->name }}</td>
                     </tr>
                     <tr>
-                        <th>Género</th>
+                        <th>Genre</th>
                         <td>{{ $artist->genre ?? '—' }}</td>
                     </tr>
                     <tr>
-                        <th>País</th>
+                        <th>Country</th>
                         <td>{{ $artist->country ?? '—' }}</td>
                     </tr>
                     <tr>
-                        <th>Biografía</th>
+                        <th>Biography</th>
                         <td>{{ $artist->bio ?? '—' }}</td>
                     </tr>
                     <tr>
-                        <th>Imagen</th>
+                        <th>Image</th>
                         <td>{{ $artist->image_path ?? '—' }}</td>
                     </tr>
                     <tr>
-                        <th>Estado</th>
+                        <th>Status</th>
                         <td>
                             @if ($artist->status)
-                                <span class="badge badge-success">Activo</span>
+                                <span class="badge badge-success">Active</span>
                             @else
-                                <span class="badge badge-secondary">Inactivo</span>
+                                <span class="badge badge-secondary">Inactive</span>
                             @endif
                         </td>
                     </tr>
                     <tr>
-                        <th>Canciones</th>
+                        <th>Songs</th>
                         <td>
                             @forelse ($artist->songs as $cancion)
                                 <span class="badge badge-info mr-1">
@@ -61,7 +61,7 @@
                                     </a>
                                 </span>
                             @empty
-                                <span class="text-muted">Sin canciones asociadas</span>
+                                <span class="text-muted">No songs assigned</span>
                             @endforelse
                         </td>
                     </tr>
@@ -71,7 +71,7 @@
 
         <div class="card-footer">
             <a href="{{ route('artists.index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left mr-1"></i> Volver
+                <i class="fas fa-arrow-left mr-1"></i> Back
             </a>
         </div>
     </div>

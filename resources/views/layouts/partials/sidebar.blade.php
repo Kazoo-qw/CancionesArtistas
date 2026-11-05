@@ -14,21 +14,21 @@
                     <a href="{{ route('home') }}"
                        class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Inicio</p>
+                        <p>Home</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('songs.index') }}"
                        class="nav-link {{ request()->routeIs('songs.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-music"></i>
-                        <p>Canciones</p>
+                        <p>Songs</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('artists.index') }}"
                        class="nav-link {{ request()->routeIs('artists.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-microphone-alt"></i>
-                        <p>Artistas</p>
+                        <p>Artists</p>
                     </a>
                 </li>
             </ul>

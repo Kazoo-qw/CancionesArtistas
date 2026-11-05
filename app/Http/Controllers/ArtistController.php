@@ -34,7 +34,7 @@ class ArtistController extends Controller
 
         return redirect()
             ->route('artists.index')
-            ->with('exito', 'El artista se registró correctamente.');
+            ->with('exito', 'Artist created successfully.');
     }
 
     // GET /artists/{artist} — detalle del artista y sus canciones.
@@ -62,7 +62,7 @@ class ArtistController extends Controller
 
         return redirect()
             ->route('artists.index')
-            ->with('exito', 'El artista se actualizó correctamente.');
+            ->with('exito', 'Artist updated successfully.');
     }
 
     // DELETE /artists/{artist} — borra el artista.
@@ -74,7 +74,7 @@ class ArtistController extends Controller
 
         return redirect()
             ->route('artists.index')
-            ->with('exito', 'El artista se eliminó correctamente.');
+            ->with('exito', 'Artist deleted successfully.');
     }
 
     // Reglas que comparten store() y update().

@@ -10,18 +10,18 @@ class CustomDataTable {
             lengthChange: true,
             autoWidth: false,
             language: {
-                sLengthMenu: "Mostrar _MENU_ entradas",
-                sEmptyTable: "No hay datos disponibles en la tabla",
-                sInfo: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                sInfoEmpty: "Mostrando 0 a 0 de 0 entradas",
-                sSearch: "Buscar:",
-                sZeroRecords: "No se encontraron registros coincidentes en la tabla",
-                sInfoFiltered: "(Filtrado de _MAX_ entradas totales)",
+                sLengthMenu: "Show _MENU_ entries",
+                sEmptyTable: "No data available in table",
+                sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
+                sInfoEmpty: "Showing 0 to 0 of 0 entries",
+                sSearch: "Search:",
+                sZeroRecords: "No matching records found",
+                sInfoFiltered: "(filtered from _MAX_ total entries)",
                 oPaginate: {
-                    sFirst: "Primero",
-                    sPrevious: "Anterior",
-                    sNext: "Siguiente",
-                    sLast: "Último"
+                    sFirst: "First",
+                    sPrevious: "Previous",
+                    sNext: "Next",
+                    sLast: "Last"
                 }
             }
         });
