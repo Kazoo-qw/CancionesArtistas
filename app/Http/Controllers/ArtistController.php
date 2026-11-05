@@ -10,7 +10,8 @@ class ArtistController extends Controller
     // GET /artists — listado paginado.
     public function index()
     {
-        $artistas = Artist::orderBy('name')->paginate(10);
+        // DataTables pagina y busca en el navegador, así que traemos todo el listado.
+        $artistas = Artist::orderBy('name')->get();
 
         return view('artists.index', compact('artistas'));
     }

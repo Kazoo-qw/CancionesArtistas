@@ -17,6 +17,15 @@
   <!-- Theme style (AdminLTE 3) -->
   <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/dist/css/select2.css') }}">
+
   @stack('css')
 
 </head>
@@ -64,6 +73,16 @@
 <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE app (pushmenu, treeview, etc.) -->
 <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
+<!-- DataTables (debe ir antes de table.js) -->
+<script src="{{ asset('backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<!-- Select2 (debe ir antes de selectors.js) -->
+<script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
+<!-- Tablas y selectores -->
+<script src="{{ asset('backend/dist/js/table.js') }}"></script>
+<script src="{{ asset('backend/dist/js/selectors.js') }}"></script>
 
 @stack('scripts')
 

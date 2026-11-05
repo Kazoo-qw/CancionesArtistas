@@ -11,7 +11,8 @@ class SongController extends Controller
     // GET /songs — listado paginado con sus artistas.
     public function index()
     {
-        $canciones = Song::with('artists')->orderBy('title')->paginate(10);
+        // DataTables pagina y busca en el navegador, así que traemos todo el listado.
+        $canciones = Song::with('artists')->orderBy('title')->get();
 
         return view('songs.index', compact('canciones'));
     }

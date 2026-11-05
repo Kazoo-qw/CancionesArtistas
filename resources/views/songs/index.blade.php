@@ -21,7 +21,7 @@
             @if ($canciones->isEmpty())
                 <p class="p-3 mb-0 text-muted">Aún no hay canciones registradas.</p>
             @else
-                <table class="table table-striped table-bordered">
+                <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -77,10 +77,6 @@
                     </tbody>
                 </table>
             @endif
-        </div>
-
-        <div class="card-footer">
-            {{ $canciones->links() }}
         </div>
     </div>
 @endsection
