@@ -46,9 +46,10 @@ class SongController extends Controller
     }
 
     // GET /songs/{song} — detalle de la canción.
-    public function show(Song $song)
+    // Forma del material: se recibe el id y se busca con findOrFail (404 si no existe).
+    public function show($id)
     {
-        $song->load('artists');
+        $song = Song::with(['artists'])->findOrFail($id);
 
         return view('songs.show', compact('song'));
     }

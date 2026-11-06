@@ -41,9 +41,10 @@ class ArtistController extends Controller
     }
 
     // GET /artists/{artist} — detalle del artista y sus canciones.
-    public function show(Artist $artist)
+    // Forma del material: se recibe el id y se busca con findOrFail (404 si no existe).
+    public function show($id)
     {
-        $artist->load('songs');
+        $artist = Artist::with(['songs'])->findOrFail($id);
 
         return view('artists.show', compact('artist'));
     }
