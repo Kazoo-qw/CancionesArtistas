@@ -31,6 +31,13 @@
                         <p>Artists</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('enrollments.index') }}"
+                       class="nav-link {{ request()->routeIs('enrollments.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-link"></i>
+                        <p>Enrollments</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

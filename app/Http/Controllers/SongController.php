@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SongRequest;
 use App\Models\Artist;
 use App\Models\Song;
-use Illuminate\Http\Request;
 
 class SongController extends Controller
 {
@@ -26,9 +26,9 @@ class SongController extends Controller
     }
 
     // POST /songs — guarda la canción y sus artistas.
-    public function store(Request $request)
+    public function store(SongRequest $request)
     {
-        $datos = $this->validar($request);
+        $datos = $request->validated();
 
         // artist_ids no es una columna de songs, se usa solo para el pivote.
         $artistasSeleccionados = $datos['artist_ids'] ?? [];
@@ -63,9 +63,9 @@ class SongController extends Controller
     }
 
     // PUT/PATCH /songs/{song} — actualiza canción y artistas.
-    public function update(Request $request, Song $song)
+    public function update(SongRequest $request, Song $song)
     {
-        $datos = $this->validar($request);
+        $datos = $request->validated();
 
         $artistasSeleccionados = $datos['artist_ids'] ?? [];
         unset($datos['artist_ids']);
@@ -90,19 +90,5 @@ class SongController extends Controller
         return redirect()
             ->route('songs.index')
             ->with('exito', 'Song deleted successfully.');
-    }
-
-    // Reglas que comparten store() y update().
-    private function validar(Request $request): array
-    {
-        return $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'album' => ['nullable', 'string', 'max:255'],
-            'duration_in_seconds' => ['nullable', 'integer', 'min:0'],
-            'release_date' => ['nullable', 'date'],
-            'genre' => ['nullable', 'string', 'max:100'],
-            'artist_ids' => ['nullable', 'array'],
-            'artist_ids.*' => ['exists:artists,id'],
-        ]);
     }
 }

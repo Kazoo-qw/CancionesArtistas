@@ -47,8 +47,8 @@
                 <div class="icon">
                     <i class="fas fa-link"></i>
                 </div>
-                <a href="{{ route('songs.index') }}" class="small-box-footer">
-                    View in songs <i class="fas fa-arrow-circle-right"></i>
+                <a href="{{ route('enrollments.index') }}" class="small-box-footer">
+                    View enrollments <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>

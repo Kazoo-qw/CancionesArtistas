@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArtistRequest;
 use App\Models\Artist;
+use App\Models\Song;
+use App\Models\SongArtist;
 use Illuminate\Http\Request;
 
 class ArtistController extends Controller
@@ -23,9 +26,9 @@ class ArtistController extends Controller
     }
 
     // POST /artists — guarda el artista.
-    public function store(Request $request)
+    public function store(ArtistRequest $request)
     {
-        $datos = $this->validar($request);
+        $datos = $request->validated();
 
         $datos['status'] = $request->boolean('status');
         $datos['registered_by'] = auth()->id();
@@ -52,9 +55,9 @@ class ArtistController extends Controller
     }
 
     // PUT/PATCH /artists/{artist} — actualiza el artista.
-    public function update(Request $request, Artist $artist)
+    public function update(ArtistRequest $request, Artist $artist)
     {
-        $datos = $this->validar($request);
+        $datos = $request->validated();
 
         $datos['status'] = $request->boolean('status');
 
@@ -77,15 +80,72 @@ class ArtistController extends Controller
             ->with('exito', 'Artist deleted successfully.');
     }
 
-    // Reglas que comparten store() y update().
-    private function validar(Request $request): array
+    // ---------------------------------------------------------------------
+    // Tabla intermedia songs_artists (Enrollments).
+    // No tiene controlador propio: se maneja desde ArtistController.
+    // ---------------------------------------------------------------------
+
+    // GET /enrollments — cada artista con las canciones que tiene asociadas.
+    public function enrollments()
     {
+        // with('songArtists.song') trae los vínculos y sus canciones de una vez (evita N+1).
+        $artistas = Artist::with('songArtists.song')->orderBy('name')->get();
+
+        return view('enrollments.index', compact('artistas'));
+    }
+
+    // GET /enrollments/create — formulario para asociar una canción con un artista.
+    public function createEnrollment()
+    {
+        $canciones = Song::orderBy('title')->get();
+        $artistas = Artist::orderBy('name')->get();
+
+        return view('enrollments.create', compact('canciones', 'artistas'));
+    }
+
+    // POST /enrollments — inserta el par (song_id, artist_id) en songs_artists.
+    public function storeEnrollment(Request $request)
+    {
+        $datos = $this->validarVinculo($request);
+
+        // Desde 2026-10-02 la tabla no tiene UNIQUE, así que el duplicado se evita aquí.
+        $existe = SongArtist::where('song_id', $datos['song_id'])
+            ->where('artist_id', $datos['artist_id'])
+            ->exists();
+
+        if ($existe) {
+            return redirect()
+                ->route('enrollments.index')
+                ->with('error', 'That artist is already linked to that song.');
+        }
+
+        SongArtist::create($datos);
+
+        return redirect()
+            ->route('enrollments.index')
+            ->with('exito', 'Enrollment created successfully.');
+    }
+
+    // DELETE /enrollments/{enrollment} — quita el vínculo; no borra la canción ni el artista.
+    public function destroyEnrollment(SongArtist $enrollment)
+    {
+        $enrollment->delete();
+
+        return redirect()
+            ->route('enrollments.index')
+            ->with('exito', 'Enrollment removed successfully.');
+    }
+
+    // Reglas que usa storeEnrollment().
+    private function validarVinculo(Request $request): array
+    {
+        // El tercer argumento pone nombres legibles en los mensajes de error.
         return $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'genre' => ['nullable', 'string', 'max:100'],
-            'bio' => ['nullable', 'string'],
-            'country' => ['nullable', 'string', 'max:100'],
-            'image_path' => ['nullable', 'string', 'max:255'],
+            'song_id' => ['required', 'exists:songs,id'],
+            'artist_id' => ['required', 'exists:artists,id'],
+        ], [], [
+            'song_id' => 'song',
+            'artist_id' => 'artist',
         ]);
     }
 }

@@ -17,4 +17,11 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('songs', SongController::class);
     Route::resource('artists', ArtistController::class);
+
+    // Inscripciones: el par canción–artista de la tabla intermedia songs_artists.
+    // No tienen controlador propio: las atiende ArtistController.
+    Route::get('enrollments', [ArtistController::class, 'enrollments'])->name('enrollments.index');
+    Route::get('enrollments/create', [ArtistController::class, 'createEnrollment'])->name('enrollments.create');
+    Route::post('enrollments', [ArtistController::class, 'storeEnrollment'])->name('enrollments.store');
+    Route::delete('enrollments/{enrollment}', [ArtistController::class, 'destroyEnrollment'])->name('enrollments.destroy');
 });

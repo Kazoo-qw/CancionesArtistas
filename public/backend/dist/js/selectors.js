@@ -219,4 +219,12 @@ $(document).ready(function() {
 	$("#sector").select2({
         allowClear: true
     });
+
+    $("#song_id").select2({
+        allowClear: true
+    });
+
+    $("#artist_id").select2({
+        allowClear: true
+    });
 });
