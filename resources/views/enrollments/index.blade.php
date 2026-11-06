@@ -40,15 +40,25 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <span>{{ $vinculo->song?->title ?? '—' }}</span>
 
-                                            {{-- Quita solo la fila de songs_artists --}}
-                                            <form action="{{ route('enrollments.destroy', $vinculo) }}" method="POST"
-                                                  onsubmit="return confirm('Remove this song from the artist?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Remove">
-                                                    <i class="fas fa-times"></i> Remove
-                                                </button>
-                                            </form>
+                                            <div class="d-flex align-items-center">
+                                                {{-- Ver la canción del vínculo (como el botón Ver del material) --}}
+                                                @if ($vinculo->song)
+                                                    <a href="{{ route('songs.show', $vinculo->song) }}"
+                                                       class="btn btn-info btn-sm mr-1" title="View">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                @endif
+
+                                                {{-- Quita solo la fila de songs_artists --}}
+                                                <form action="{{ route('enrollments.destroy', $vinculo) }}" method="POST"
+                                                      onsubmit="return confirm('Remove this song from the artist?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Remove">
+                                                        <i class="fas fa-times"></i> Remove
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </li>
                                     @empty
                                         <li class="list-group-item text-muted">No songs yet.</li>
