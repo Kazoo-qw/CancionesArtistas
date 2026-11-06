@@ -5,9 +5,7 @@
 @section('content')
     <div class="login-box">
         <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <img src="{{ asset('backend/dist/img/logo_audysoft.png') }}" alt="">
-            </div>
+            {{-- El logo de la plantilla todavía no está en public/: se quita el <img> para no mostrar el icono roto --}}
             <div class="card-body">
                 <p class="login-box-msg">{{ __('Log In') }}</p>
                 <form method="POST" action="{{ route('login') }}">
